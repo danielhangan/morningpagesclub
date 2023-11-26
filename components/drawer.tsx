@@ -9,6 +9,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetDescription,
 } from "@/components/ui/sheet"
 
 import {
@@ -27,7 +28,8 @@ import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { appStore } from "@/context/AppSettingsState"
-import { Input } from "./ui/input"
+import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+
 
 
 export function SheetDemo() {
@@ -39,8 +41,34 @@ export function SheetDemo() {
     pageSize,
     setPageSize,
     pageColor,
-    setPageColor
-  ] = appStore((state) => [state.fontSize, state.setFontSize, state.fontFamily, state.setFontFamily, state.pageSize, state.setPageSize, state.pageColor, state.setPageColor])
+    setPageColor,
+    contentText
+  ] = appStore((state) => [state.fontSize, state.setFontSize, state.fontFamily, state.setFontFamily, state.pageSize, state.setPageSize, state.pageColor, state.setPageColor, state.contentText])
+
+    // Create styles
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: 'row',
+      backgroundColor: '#E4E4E4',
+      fontSize: fontSize,
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1
+    }
+  });
+
+  // Create Document Component
+  const MyDocument = () => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          <Text>{contentText}</Text>
+        </View>
+      </Page>
+    </Document>
+  );
 
   return (
     <Sheet>
@@ -49,7 +77,7 @@ export function SheetDemo() {
           <HamburgerMenuIcon className="" />
         </Button>
       </SheetTrigger>
-      <SheetContent className='w-[400px] sm:w-[540px]'>
+      <SheetContent className='sm:w-[540px] w-[400px]'>
         <SheetHeader>
           <SheetTitle>Settings</SheetTitle>
         </SheetHeader>
@@ -68,12 +96,12 @@ export function SheetDemo() {
               Font Size
             </Label>
             <Slider
-              className='col-span-3 text-sm'
-              defaultValue={[fontSize]}
-              value={[fontSize]}
-              min={12}
-              max={18}
-              step={2}
+              className='col-span-3 text-sm' 
+            defaultValue={[fontSize]}
+            value={[fontSize]}
+            min={12}
+            max={24}
+            step={2}
               onValueChange={(value: number[]) => setFontSize(value[0])}
             />
           </div>
@@ -85,39 +113,72 @@ export function SheetDemo() {
               <SelectTrigger className="col-span-3">
                 <SelectValue placeholder="Select a font" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Fonts</SelectLabel>
-                  <SelectItem value="sans" className="font-sans">Sans</SelectItem>
-                  <SelectItem value="serif" className="font-serif">Serif</SelectItem>
+            <SelectContent>
+              <SelectGroup>
+              <SelectLabel>Fonts</SelectLabel>
+              <SelectItem value="sans" className="font-sans">Sans</SelectItem>
+              <SelectItem value="serif" className="font-serif">Serif</SelectItem>
                   <SelectItem value="mono" className="font-mono">Mono</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
-          <div className="grid items-center grid-cols-4 gap-4">
-            <Label htmlFor="username" className="text-xs font-normal text-left">
+              <div className="grid items-center grid-cols-4 gap-4">
+                <Label htmlFor="username" className="text-xs font-normal text-left">
               Page Color
             </Label>
-            <RadioGroup defaultValue="background" value={pageColor} orientation="horizontal" className='flex flex-row justify-between gap-4' onValueChange={(value: string) => setPageColor(value)}>
+              <RadioGroup defaultValue="background" value={pageColor} orientation="horizontal" className='flex flex-row justify-between gap-4' onValueChange={(value: string) => setPageColor(value)}>
               <RadioGroupItem value="background" className="w-6 h-6 border-none rounded-sm bg-background" id="r1" />
               <RadioGroupItem value="softivory" className="w-6 h-6 border-none rounded-sm bg-softivory" id="r1" />
               <RadioGroupItem value="pastelgray" className="w-6 h-6 border-none rounded-sm bg-pastelgray" id="r2" />
               <RadioGroupItem value="paleblue" className="w-6 h-6 border-none rounded-sm bg-paleblue" id="r3" />
               <RadioGroupItem value="mintcream" className="w-6 h-6 border-none rounded-sm bg-mintcream" id="r4" />
-              <RadioGroupItem value="lavendermist" className="w-6 h-6 border-none rounded-sm bg-lavendermist" id="r5" />
-            </RadioGroup>
-          </div>
-        </div>
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit" size='sm'>Save changes</Button>
-          </SheetClose>
-        </SheetFooter>
-        <Separator className='my-6' />
-        <SheetTitle>Analytics</SheetTitle>
-      </SheetContent>
-    </Sheet>
-  )
+                                    <RadioGroupItem value="lavendermist" className="w-6 h-6 border-none rounded-sm bg-lavendermist" id="r5" />
+                                  </RadioGroup>
+                                </div>
+                              </div>
+                              <div className="grid items-center grid-cols-4 gap-4">
+            <Label htmlFor="username" className="text-xs font-normal text-left">
+              Export
+            </Label>
+            <div className="col-span-3">
+                              <PDFDownloadLink document={<MyDocument />} fileName={`${new Date().toISOString().split("T")[0]}_morningpagesclub.pdf`}>
+                                <Button size='sm' variant='ghost'>
+                                  PDF
+                                </Button>
+                              </PDFDownloadLink>
+
+            </div>
+            </div>
+
+      <Separator className= 'my-6' />
+      <SheetHeader>   
+      <SheetTitle>Text Analysis</SheetTitle>    
+      <SheetDescription>Coming Soon</SheetDescription>                                 
+      </SheetHeader>                                            
+    </SheetContent>                                                                                                     
+    </Sheet >                                                                                                                        
+  )   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

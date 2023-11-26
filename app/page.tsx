@@ -17,13 +17,11 @@ import { useShallow } from 'zustand/react/shallow'
 // - wide/narrow (done)
 // - keep state on refresh! (done)
 // - font (done)
-// - save to PDF
+// - save to PDF (done)
 // - progress feedback
 // - emotion analytics
 // - sentiment analysis
 // - word cloud
-// - email list to notify people of new features.
-// - random the artists way quote
 // - select text and share to twitter.
 
 export default function Home() {
@@ -77,7 +75,7 @@ export default function Home() {
       </div>
 
       <div className="fixed bottom-4 left-4 ">
-            <ModeToggle />
+          <ModeToggle />
       </div>
     </main >
       )
