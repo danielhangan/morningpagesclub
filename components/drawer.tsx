@@ -27,6 +27,7 @@ import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { appStore } from "@/context/AppSettingsState"
+import { Input } from "./ui/input"
 
 
 export function SheetDemo() {
@@ -52,18 +53,18 @@ export function SheetDemo() {
         <SheetHeader>
           <SheetTitle>Settings</SheetTitle>
         </SheetHeader>
-        <div className="grid gap-4 py-4 w-full ">
-          <div className="grid grid-cols-4 items-center gap-4 font-normal">
-            <Label htmlFor="name" className="text-left font-normal text-xs">
+        <div className="grid w-full gap-4 py-4 ">
+          <div className="grid items-center grid-cols-4 gap-4 font-normal">
+            <Label htmlFor="name" className="text-xs font-normal text-left">
               View
             </Label>
             <div className="flex items-center space-x-2">
               <Switch checked={pageSize === '40vw' ? false : true} onCheckedChange={(e) => e ? setPageSize('70vw') : setPageSize('40vw')} />
-              <Label className="text-right font-normal text-xs">Wide</Label>
+              <Label className="text-xs font-normal text-right">Wide</Label>
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4 font-normal">
-            <Label htmlFor="name" className="text-left font-normal text-xs">
+          <div className="grid items-center grid-cols-4 gap-4 font-normal">
+            <Label htmlFor="name" className="text-xs font-normal text-left">
               Font Size
             </Label>
             <Slider
@@ -76,8 +77,8 @@ export function SheetDemo() {
               onValueChange={(value: number[]) => setFontSize(value[0])}
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-left font-normal text-xs">
+          <div className="grid items-center grid-cols-4 gap-4">
+            <Label htmlFor="username" className="text-xs font-normal text-left">
               Font Style
             </Label>
             <Select value={fontFamily} onValueChange={(value: string) => setFontFamily(value)}>
@@ -94,17 +95,17 @@ export function SheetDemo() {
               </SelectContent>
             </Select>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-left font-normal text-xs">
+          <div className="grid items-center grid-cols-4 gap-4">
+            <Label htmlFor="username" className="text-xs font-normal text-left">
               Page Color
             </Label>
             <RadioGroup defaultValue="background" value={pageColor} orientation="horizontal" className='flex flex-row justify-between gap-4' onValueChange={(value: string) => setPageColor(value)}>
-              <RadioGroupItem value="background" className="bg-background border-none rounded-sm h-6 w-6" id="r1" />
-              <RadioGroupItem value="softivory" className="bg-softivory border-none rounded-sm h-6 w-6" id="r1" />
-              <RadioGroupItem value="pastelgray" className="bg-pastelgray border-none rounded-sm h-6 w-6" id="r2" />
-              <RadioGroupItem value="paleblue" className="bg-paleblue border-none rounded-sm h-6 w-6" id="r3" />
-              <RadioGroupItem value="mintcream" className="bg-mintcream border-none rounded-sm h-6 w-6" id="r4" />
-              <RadioGroupItem value="lavendermist" className="bg-lavendermist border-none rounded-sm h-6 w-6" id="r5" />
+              <RadioGroupItem value="background" className="w-6 h-6 border-none rounded-sm bg-background" id="r1" />
+              <RadioGroupItem value="softivory" className="w-6 h-6 border-none rounded-sm bg-softivory" id="r1" />
+              <RadioGroupItem value="pastelgray" className="w-6 h-6 border-none rounded-sm bg-pastelgray" id="r2" />
+              <RadioGroupItem value="paleblue" className="w-6 h-6 border-none rounded-sm bg-paleblue" id="r3" />
+              <RadioGroupItem value="mintcream" className="w-6 h-6 border-none rounded-sm bg-mintcream" id="r4" />
+              <RadioGroupItem value="lavendermist" className="w-6 h-6 border-none rounded-sm bg-lavendermist" id="r5" />
             </RadioGroup>
           </div>
         </div>

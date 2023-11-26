@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
 type Store = {
-  fontSize: number | any;
+  fontSize: number;
   fontFamily: string;
   pageSize: string;
   pageColor: string;

@@ -31,7 +31,6 @@ export default function Home() {
   const [selectedText, setSelectedText] = useState<string>('');
   const [fontSize, fontFamily, pageSize, pageColor, contentText, setContentText] = appStore(useShallow((state) => [state.fontSize, state.fontFamily, state.pageSize, state.pageColor, state.contentText, state.setContentText]))
 
-
   function countWords(text: string): number {
     const normalizedText = text.replace(/\s+/g, ' ').trim();
     const words = normalizedText.split(' ');
@@ -42,27 +41,35 @@ export default function Home() {
     setSelectedText('');
   }
 
-
-
   useEffect(() => {
     setWords(countWords(contentText))
   }, [contentText])
 
 
   return (
-    <main className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 text-[${fontSize}px] font-${fontFamily} bg-${pageColor}`}>
-      <Textarea
-        value={contentText}
-        onChange={(e) => setContentText(e.target.value)}
-        className={`bg-${pageColor} h-[90vh] w-[${pageSize}] text-[${fontSize}px] p-8 font-${fontFamily}`}
+    <main
+      className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 font-${fontFamily} bg-${pageColor}`}
+      style={{
+        fontSize: `${fontSize}px`,
+      }}
+    >
+        <Textarea
+          value={contentText}
+          onChange={(e) => setContentText(e.target.value)}
+          className={`bg-${pageColor} h-[90vh] p-8 font-${fontFamily}`}
+          style={{
+            fontSize: `${fontSize}px`,
+            width: `${pageSize}`,
+          }} 
         autoFocus={true}
         placeholder="“Creativity - like human life itself - begins in darkness”"
         onMouseUp={handleTextSelect}
       />
 
-      <div className="fixed top-4 right-4 border-none ring-none">
+      
+      <div className="fixed border-none top-4 right-4 ring-none" >
         <SheetDemo />
-        {selectedText ? <TwitterLogoIcon className="ml-2 w-5 h-5" /> : null}
+        {selectedText ? <TwitterLogoIcon className="w-5 h-5 ml-2" /> : null}
       </div>
 
       <div className="fixed bottom-4 right-4">
@@ -70,8 +77,8 @@ export default function Home() {
       </div>
 
       <div className="fixed bottom-4 left-4 ">
-        <ModeToggle />
+            <ModeToggle />
       </div>
     </main >
-  )
+      )
 }
