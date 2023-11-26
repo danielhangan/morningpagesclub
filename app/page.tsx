@@ -39,10 +39,10 @@ export default function Home() {
   }
 
   const handleTextSelect = (e: any) => {
-    const text: any = window.getSelection().toString();
-    setSelectedText(text);
-    // setShowPopup(text.length > 0);
-  };
+    setSelectedText('');
+  }
+
+
 
   useEffect(() => {
     setWords(countWords(contentText))
