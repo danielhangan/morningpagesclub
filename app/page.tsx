@@ -18,16 +18,41 @@ import { useShallow } from 'zustand/react/shallow'
 // - keep state on refresh! (done)
 // - font (done)
 // - save to PDF (done)
+// - select text and share to twitter.
 // - progress feedback
 // - emotion analytics
 // - sentiment analysis
 // - word cloud
-// - select text and share to twitter.
+// - auth
+// - database (turso with prisma)
+// - stripe (2.99/month or 29.99/year)
+// - test users (10 preferably)
+// - launch streategy
+// - launch
+
+
+
+interface pageSettingsI {
+  fontSize: number;
+  fontFamily: string;
+  pageSize: string;
+  pageColor: string;
+  contentText: string;
+}
+
+const initPageSettings = {
+  fontSize: 14,
+  fontFamily: 'sans',
+  pageSize: '3/4',
+  pageColor: 'background',
+  contentText: ''
+}
 
 export default function Home() {
   const [words, setWords] = useState<number>(0)
   const [selectedText, setSelectedText] = useState<string>('');
-  const [fontSize, fontFamily, pageSize, pageColor, contentText, setContentText] = appStore(useShallow((state) => [state.fontSize, state.fontFamily, state.pageSize, state.pageColor, state.contentText, state.setContentText]))
+  const [pageSettings, setPageSettings] = useState<pageSettingsI>(initPageSettings);
+  const store = appStore(useShallow((state) => state))
 
   function countWords(text: string): number {
     const normalizedText = text.replace(/\s+/g, ' ').trim();
@@ -40,25 +65,29 @@ export default function Home() {
   }
 
   useEffect(() => {
-    setWords(countWords(contentText))
-  }, [contentText])
+    setWords(countWords(pageSettings.contentText))
+  }, [pageSettings.contentText])
+
+  useEffect(() => {
+    setPageSettings({
+      fontSize: store.fontSize,
+      fontFamily: store.fontFamily,
+      pageSize: store.pageSize,
+      pageColor: store.pageColor,
+      contentText: store.contentText
+    })
+  }, [store])
+
 
 
   return (
     <main
-      className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 font-${fontFamily} bg-${pageColor}`}
-      style={{
-        fontSize: `${fontSize}px`,
-      }}
+      className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 font-${pageSettings.fontFamily} bg-${pageSettings.pageColor}`}
     >
         <Textarea
-          value={contentText}
-          onChange={(e) => setContentText(e.target.value)}
-          className={`bg-${pageColor} h-[90vh] p-8 font-${fontFamily}`}
-          style={{
-            fontSize: `${fontSize}px`,
-            width: `${pageSize}`,
-          }} 
+          value={pageSettings.contentText}
+          onChange={(e) => store.setContentText(e.target.value)}
+          className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-${pageSettings.fontSize} w-${pageSettings.pageSize}`}
         autoFocus={true}
         placeholder="“Creativity - like human life itself - begins in darkness”"
         onMouseUp={handleTextSelect}

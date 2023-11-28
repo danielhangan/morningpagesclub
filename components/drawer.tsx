@@ -32,6 +32,7 @@ import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from '@react-
 
 
 
+
 export function SheetDemo() {
   const [
     fontSize,
@@ -87,7 +88,7 @@ export function SheetDemo() {
               View
             </Label>
             <div className="flex items-center space-x-2">
-              <Switch checked={pageSize === '40vw' ? false : true} onCheckedChange={(e) => e ? setPageSize('70vw') : setPageSize('40vw')} />
+              <Switch checked={pageSize === '2/4' ? false : true} onCheckedChange={(e) => e ? setPageSize('3/4') : setPageSize('2/4')} />
               <Label className="text-xs font-normal text-right">Wide</Label>
             </div>
           </div>
@@ -153,12 +154,14 @@ export function SheetDemo() {
 
       <Separator className= 'my-6' />
       <SheetHeader>   
-      <SheetTitle>Text Analysis</SheetTitle>    
-      <SheetDescription>Coming Soon</SheetDescription>                                 
+      <SheetTitle>Analytics</SheetTitle>    
+      <SheetDescription>
+        <Button size='sm'>Login</Button>  
+      </SheetDescription>                                 
       </SheetHeader>                                            
     </SheetContent>                                                                                                     
     </Sheet >                                                                                                                        
-  )   
+  )
 }
 
 

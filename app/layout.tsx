@@ -1,14 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import localFont from '@next/font/local';
 import { ThemeProvider } from '@/components/ui/theme-provider';
-
 
 
 export const metadata: Metadata = {
   title: 'Morning Pages Club',
-  description: '',
+  description: 'The Artists Way Daily Journal',
 }
 
 export default function RootLayout({
