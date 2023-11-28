@@ -88,7 +88,7 @@ export function SheetDemo() {
               View
             </Label>
             <div className="flex items-center space-x-2">
-              <Switch checked={pageSize === '2/4' ? false : true} onCheckedChange={(e) => e ? setPageSize('3/4') : setPageSize('2/4')} />
+              <Switch checked={pageSize === '50%' ? false : true} onCheckedChange={(e) => e ? setPageSize('70%') : setPageSize('50%')} />
               <Label className="text-xs font-normal text-right">Wide</Label>
             </div>
           </div>

@@ -43,7 +43,7 @@ interface pageSettingsI {
 const initPageSettings = {
   fontSize: 14,
   fontFamily: 'sans',
-  pageSize: '3/4',
+  pageSize: '50%',
   pageColor: 'background',
   contentText: ''
 }
@@ -87,7 +87,7 @@ export default function Home() {
         <Textarea
           value={pageSettings.contentText}
           onChange={(e) => store.setContentText(e.target.value)}
-          className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-${pageSettings.fontSize} w-${pageSettings.pageSize}`}
+          className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-${pageSettings.fontSize} w-[${pageSettings.pageSize}]`}
         autoFocus={true}
         placeholder="“Creativity - like human life itself - begins in darkness”"
         onMouseUp={handleTextSelect}
