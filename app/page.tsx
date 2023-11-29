@@ -43,7 +43,7 @@ interface pageSettingsI {
 const initPageSettings = {
   fontSize: 14,
   fontFamily: 'sans',
-  pageSize: '50%',
+  pageSize: '40vw',
   pageColor: 'background',
   contentText: ''
 }
@@ -80,20 +80,21 @@ export default function Home() {
 
 
 
+
   return (
     <main
       className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 font-${pageSettings.fontFamily} bg-${pageSettings.pageColor}`}
     >
-        <Textarea
-          value={pageSettings.contentText}
-          onChange={(e) => store.setContentText(e.target.value)}
-          className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-${pageSettings.fontSize} w-[${pageSettings.pageSize}]`}
+      <Textarea
+        value={pageSettings.contentText}
+        onChange={(e) => store.setContentText(e.target.value)}
+        className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-${pageSettings.fontSize} w-full md:w-[60vw] xl:w-[50vw]`}
         autoFocus={true}
         placeholder="“Creativity - like human life itself - begins in darkness”"
         onMouseUp={handleTextSelect}
       />
 
-      
+
       <div className="fixed border-none top-4 right-4 ring-none" >
         <SheetDemo />
         {selectedText ? <TwitterLogoIcon className="w-5 h-5 ml-2" /> : null}
@@ -104,8 +105,8 @@ export default function Home() {
       </div>
 
       <div className="fixed bottom-4 left-4 ">
-          <ModeToggle />
+        <ModeToggle />
       </div>
     </main >
-      )
+  )
 }
