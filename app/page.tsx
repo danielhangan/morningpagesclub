@@ -78,9 +78,6 @@ export default function Home() {
     })
   }, [store])
 
-
-
-
   return (
     <main
       className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 font-${pageSettings.fontFamily} bg-${pageSettings.pageColor}`}
@@ -100,8 +97,8 @@ export default function Home() {
         {selectedText ? <TwitterLogoIcon className="w-5 h-5 ml-2" /> : null}
       </div>
 
-      <div className="fixed bottom-4 right-4">
-        <p className='text-primary'>words typed: {words}</p>
+      <div className="fixed top-4 left-4">
+        <p className='text-primary'>words: {words}</p>
       </div>
 
       <div className="fixed bottom-4 left-4 ">
