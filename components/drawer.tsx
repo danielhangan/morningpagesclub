@@ -29,6 +29,7 @@ import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { appStore } from "@/context/AppSettingsState"
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+import { Input } from "./ui/input"
 
 
 

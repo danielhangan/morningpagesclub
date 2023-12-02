@@ -78,6 +78,7 @@ export default function Home() {
     })
   }, [store])
 
+
   return (
     <main
       className={`flex max-h-screen h-full w-full flex-col items-center pt-8 pb-16 font-${pageSettings.fontFamily} bg-${pageSettings.pageColor}`}
@@ -85,7 +86,7 @@ export default function Home() {
       <Textarea
         value={pageSettings.contentText}
         onChange={(e) => store.setContentText(e.target.value)}
-        className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-${pageSettings.fontSize} w-full md:w-[60vw] xl:w-[50vw]`}
+        className={`h-[90vh] p-8 font-${pageSettings.fontFamily} text-[${pageSettings.fontSize}px] w-full md:w-[60vw] xl:w-[50vw]`}
         autoFocus={true}
         placeholder="“Creativity - like human life itself - begins in darkness”"
         onMouseUp={handleTextSelect}
