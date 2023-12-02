@@ -7,6 +7,7 @@ import { TwitterLogoIcon } from '@radix-ui/react-icons'
 
 import { appStore } from '@/context/AppSettingsState'
 import { useShallow } from 'zustand/react/shallow'
+import {useMount} from 'react-use';
 
 // Features
 // - word count (done)

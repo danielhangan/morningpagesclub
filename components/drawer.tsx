@@ -93,7 +93,7 @@ export function SheetDemo() {
           {/*     <Label className="text-xs font-normal text-right">Wide</Label> */}
           {/*   </div> */}
           {/* </div> */}
-          <div className="grid items-center grid-cols-4 gap-4 font-normal">
+          {/* <div className="grid items-center grid-cols-4 gap-4 font-normal">
             <Label htmlFor="name" className="text-xs font-normal text-left">
               Font Size
             </Label>
@@ -106,7 +106,7 @@ export function SheetDemo() {
               step={2}
               onValueChange={(value: number[]) => setFontSize(value[0])}
             />
-          </div>
+          </div> */}
           <div className="grid items-center grid-cols-4 gap-4">
             <Label htmlFor="username" className="text-xs font-normal text-left">
               Font Style
@@ -145,7 +145,7 @@ export function SheetDemo() {
           </Label>
           <div className="col-span-3">
             <PDFDownloadLink document={<MyDocument />} fileName={`${new Date().toISOString().split("T")[0]}_morningpagesclub.pdf`}>
-              <Button size='sm' variant='ghost'>
+              <Button size='sm' variant='default'>
                 PDF
               </Button>
             </PDFDownloadLink>
@@ -155,7 +155,7 @@ export function SheetDemo() {
 
         <Separator className='my-6' />
         <SheetHeader>
-          <SheetTitle>Analytics</SheetTitle>
+          <SheetTitle>Insights</SheetTitle>
           <SheetDescription>
             <Button size='sm'>Login</Button>
           </SheetDescription>
